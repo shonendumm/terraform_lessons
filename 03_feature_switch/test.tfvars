@@ -1,2 +1,2 @@
-number_of_servers = 1
+number_of_servers = ["test"]
 environment = "test"

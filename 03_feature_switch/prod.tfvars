@@ -1,2 +1,2 @@
-number_of_servers = 2
+number_of_servers = ["prod1", "prod2"]
 environment = "prod"
