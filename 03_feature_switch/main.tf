@@ -27,3 +27,5 @@ resource "aws_instance" "ec2" {
 # run terraform plan -var-file="prod.tfvars"
 # or
 # run terraform plan -var-file="test.tfvars"
+
+# Else, when running terraform plan, it will prompt you to input the variables in the cmdline.
