@@ -18,6 +18,7 @@ resource "aws_instance" "ec2" {
     instance_type = "t2.micro"
     for_each = var.environment == "prod" ? toset(var.number_of_servers): toset(var.number_of_servers)
 
+    # count has been deprecated
     # count = var.environment == "prod" ? 1:0
   
 }
