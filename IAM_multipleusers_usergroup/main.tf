@@ -4,7 +4,7 @@ provider "aws" {
 
 
 variable "usernames" {
-  type = list(string)
+  type    = list(string)
   default = ["user1", "user2", "user3"]
 }
 
@@ -12,15 +12,27 @@ variable "usernames" {
 # Creates multiple users from the list of usernames
 resource "aws_iam_user" "users" {
   for_each = toset(var.usernames)
-  name = each.key
+  name     = each.key
 }
 
-# Manage group membership from group overview
-resource "aws_iam_group_membership" "example1" {
-  name = aws_iam_group.developers.name
-  users = [for user in var.usernames: aws_iam_user.users[user].name ]
-  group = aws_iam_group.developers.name
+# Assign user group membership multiple times, based on the usernames vars
+resource "aws_iam_user_group_membership" "example1" {
+    for_each = toset(var.usernames)
+    user = aws_iam_user.users[each.key].name
+
+    groups = [
+        aws_iam_group.developers.name,
+    ]
 }
+
+
+
+# Manage group membership from group overview
+# resource "aws_iam_group_membership" "example1" {
+#   name = aws_iam_group.developers.name
+#   users = [for user in var.usernames: aws_iam_user.users[user].name ]
+#   group = aws_iam_group.developers.name
+# }
 
 
 # Creates a IAM user group
