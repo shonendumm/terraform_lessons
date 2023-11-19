@@ -25,3 +25,9 @@ resource "aws_db_instance" "myRDS" {
 # Note, secret.tfvars provides the username and password variables
 # To pass in at cli, use terraform -var-file="secret.tfvars"
 # Also, add secret* to .gitignore file
+
+# Example for secret.tfvars file:
+# secret = {
+#     username = "user123"
+#     password = "thisisapassword"
+# }
